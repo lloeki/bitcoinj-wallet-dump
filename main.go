@@ -21,6 +21,9 @@ func main() {
 	if err != nil {
 		log.Fatal("unmarshaling error: ", err)
 	}
-	fmt.Printf("Public key (WIF): %s\n", base58.Check(w.Key[0].PublicKey, base58.BITCOIN_PUBKEY))
-	fmt.Printf("Private key (WIF): %s\n", base58.Check(w.Key[0].SecretBytes, base58.BITCOIN_PRIVKEY))
+
+	for i, key := range w.Key {
+		fmt.Printf("%d Publ: %s\n", i, base58.Check(key.PublicKey, base58.BITCOIN_PUBKEY))
+		fmt.Printf("%d Priv: %s\n", i, base58.Check(key.SecretBytes, base58.BITCOIN_PRIVKEY))
+	}
 }
